@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Editor de Código</title>
+    <style>
+      #editor {
+        width: 800px;
+        height: 600px;
+      }
+    </style>
+    <script src="https://unpkg.com/monaco-editor@0.26.1/min/vs/loader.js"></script>
+    <script>
+      require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.26.1/min/vs' }});
+      require(['vs/editor/editor.main'], function() {
+        var editor = monaco.editor.create(document.getElementById('editor'), {
+          value: 'function hello() {\n\tconsole.log("Hello, world!");\n}',
+          language: 'javascript',
+          theme: 'vs-dark'
+        });
+
+        // Adiciona a função de selecionar próximas ocorrências ao atalho CTRL+D
+        editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_D, function() {
+          editor.trigger('editor', 'editor.action.selectHighlights', { sticky: true, occurrences: { kind: monaco.languages.DocumentHighlightKind.Text }});
+        });
+
+        // Adiciona a função de comentar a linha ao atalho CTRL+/
+        editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.US_SLASH, function() {
+          editor.trigger('editor', 'editor.action.commentLine', null);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="editor"></div>
+  </body>
+</html>
