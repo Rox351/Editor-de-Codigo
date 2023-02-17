@@ -1,0 +1,57 @@
+#editor{
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.light-theme {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 10px 35px;
+    border: none;
+    background-color: #6e6e6e;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+}
+
+
+
+button:hover {
+    background-color: #9da19e;
+}
+
+button::before {
+    content: "\263E";
+    font-size: 1.2em;
+    position: absolute;
+    top: 42%;
+    left: 14px;
+    transform: translateY(-50%);
+}
+
+.dark-theme button::before {
+	content: "";
+}
+
+.dark-theme button::after {
+
+	content: "\2600";
+	font-size: 1.2em;
+	position: absolute;
+	top: 41%;
+   	left: 12px;
+	transform: translateY(-50%);
+}
